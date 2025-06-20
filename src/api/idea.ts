@@ -85,3 +85,25 @@ export const updateVersionHistory = async (
     setError("Network error");
   }
 };
+
+export const getIdeasByUserId = async (
+  userId: string,
+  setError: (msg: string) => void
+) => {
+  setError("");
+  if (!userId) {
+    setError("User ID is required.");
+    return;
+  }
+  try {
+    const res = await fetch(`http://localhost:3002/api/business-ideas/${userId}`);
+    const data = await res.json();
+    if (!res.ok) {
+      setError(data.message || "Failed to fetch ideas");
+    } else {
+      return data;
+    }
+  } catch (err) {
+    setError("Network error");
+  }
+};

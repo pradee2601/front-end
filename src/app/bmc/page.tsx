@@ -67,7 +67,7 @@ export default function BMCPage() {
 
   useEffect(() => {
     const userId = localStorage.getItem('userId');
-    const ideaId = "68551d72ac3a27e9943e1513";
+    const ideaId = localStorage.getItem('IdeaId');
     if (userId && ideaId) {
       getIdeaById(userId, ideaId, setError).then((data) => {
         if (data) setIdeaData(data);

@@ -39,9 +39,9 @@ export default function ControlPanelPage() {
   useEffect(() => {
     // Fetch BMC data from API
     const userId = localStorage.getItem("userId");
-    const ideaId = "68551d72ac3a27e9943e1513";
-    if (!userId) {
-      setError("User ID not found. Please log in again.");
+    const ideaId = localStorage.getItem('IdeaId');
+    if (!userId || !ideaId) {
+      setError("User ID or Idea ID not found. Please log in again.");
       setLoading(false);
       return;
     }

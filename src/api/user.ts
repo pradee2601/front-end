@@ -75,8 +75,9 @@ export const handleSignup = async (
       // handle success (e.g., save token, redirect)
       if (data.userId) {
         localStorage.setItem('userId', data.userId);
+        // alert("Signed up!");
+        return true;
       }
-      alert("Signed up!");
     }
   } catch (err) {
     setError("Network error");

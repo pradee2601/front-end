@@ -24,15 +24,18 @@ export default function LoginPage() {
     try {
       const result = await apiHandleLogin(e, loginData, setError);
       if (result === true) {
-        router.push("/input");
+        router.push("/home");
       }
     } catch (err) {
       setError("Login failed");
     }
   };
 
-  const handleSignup = (e: React.FormEvent) => {
-    apiHandleSignup(e, signupData, setError);
+  const handleSignup = async (e: React.FormEvent) => {
+    const result = await apiHandleSignup(e, signupData, setError);
+    if (result === true) {
+      router.push("/home");
+    }
   };
 
   return (

@@ -50,7 +50,7 @@ export default function DashboardPage() {
   const loadData = async () => {
     setError("");
     const userId = localStorage.getItem("userId");
-    const ideaId = "68551d72ac3a27e9943e1513";
+    const ideaId = localStorage.getItem("IdeaId");
     if (userId && ideaId) {
       const ideaData = await getIdeaById(userId, ideaId, setError);
       if (ideaData && ideaData.idea) {
