@@ -99,6 +99,11 @@ export default function InputPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-x-hidden">
+      {/* Back Button */}
+      <Link href="/home" className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-white/80 hover:bg-white text-blue-700 rounded-lg shadow font-semibold transition-all duration-200 backdrop-blur border border-blue-100">
+        <svg className="h-5 w-5 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+        Back
+      </Link>
       {/* Animated, interactive background */}
       <div className="fixed inset-0 -z-10 animate-bg-gradient bg-gradient-to-br from-blue-100 via-green-100 to-blue-200" />
       {/* Floating shapes */}
