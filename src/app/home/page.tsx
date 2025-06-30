@@ -30,6 +30,7 @@ const HomePage = () => {
   };
 
   const handleAddIdea = () => {
+    localStorage.removeItem("IdeaId");
     router.push("/input");
   };
 
@@ -70,7 +71,9 @@ const HomePage = () => {
         marginBottom: 10
       }}>{label}</span>
       <div>
-        <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 8 }}>{title}</div>
+        <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 8 }}>
+          {title.length > 90 ? title.slice(0, 90) + '...' : title}
+        </div>
       </div>
     </div>
   );
@@ -84,9 +87,9 @@ const HomePage = () => {
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        alignItems: "start",
         background: "#f7f8fa",
-        padding: "2rem 1rem"
+        padding: "2rem 2rem"
       }}
     >
       <div
@@ -100,26 +103,8 @@ const HomePage = () => {
         }}
       >
         <h1 style={{ fontSize: 32, fontWeight: 700, color: "#222", margin: 0 }}>
-          Your Ideas
+          Your Ideas 
         </h1>
-        <button
-          onClick={handleAddIdea}
-          style={{
-            padding: "0.75rem 1.5rem",
-            background: "#0070f3",
-            color: "#fff",
-            border: "none",
-            borderRadius: 8,
-            fontSize: 18,
-            fontWeight: 600,
-            cursor: "pointer",
-            transition: "background 0.2s"
-          }}
-          onMouseOver={e => (e.currentTarget.style.background = '#0059c1')}
-          onMouseOut={e => (e.currentTarget.style.background = '#0070f3')}
-        >
-          + Add Idea
-        </button>
       </div>
       {ideas.length === 0 ? (
         <div style={{ textAlign: "center", color: "#888", width: "100%", maxWidth: 700 }}>
@@ -136,6 +121,51 @@ const HomePage = () => {
             maxWidth: 900,
           }}
         >
+          {/* Add New Product Card */}
+          <div
+            onClick={handleAddIdea}
+            style={{
+              border: "2px dashed #bbb",
+              borderRadius: 20,
+              background: "#fafbfc",
+              minWidth: 250,
+              minHeight: 180,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              transition: "box-shadow 0.15s, border-color 0.15s",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.04)",
+            }}
+            onMouseOver={e => {
+              e.currentTarget.style.borderColor = '#0070f3';
+              e.currentTarget.style.boxShadow = '0 4px 24px rgba(0,112,243,0.08)';
+            }}
+            onMouseOut={e => {
+              e.currentTarget.style.borderColor = '#bbb';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.04)';
+            }}
+          >
+            <div style={{
+              width: 48,
+              height: 48,
+              borderRadius: "50%",
+              background: "#f3f6fa",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: 16,
+              fontSize: 28,
+              color: "#0070f3",
+              border: "1.5px solid #e0e0e0"
+            }}>+
+            </div>
+            <div style={{ fontWeight: 600, fontSize: 20, color: "#222", textAlign: "center" }}>
+              Add New Idea 💡
+            </div>
+          </div>
+          {/* Idea Cards */}
           {ideas.map((idea, idx) => (
             <IdeaCard
               key={idx}

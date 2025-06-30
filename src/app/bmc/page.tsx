@@ -53,6 +53,14 @@ const cardContentStyle: React.CSSProperties = {
   width: '100%',
 };
 
+const cardContentStyle1: React.CSSProperties = {
+  marginTop: 8,
+  fontWeight: 400,
+  fontSize: '1rem',
+  maxHeight: '350px',
+  overflowY: 'auto',
+  width: '100%',
+};
 const partnersCardStyle: React.CSSProperties = {
   minHeight: '60px',
   gridRow: '2',
@@ -83,12 +91,12 @@ export default function BMCPage() {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.5rem', marginBottom: '1.5rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.5rem', marginBottom: '1rem' }}>
         <h1 className='text-2xl font-bold mt-2 ml-2'>
           Business Model Canvas
         </h1>
         <button
-          style={{ marginRight: '1.5rem', marginTop: '0.5rem', padding: '0.5rem 1.5rem', fontSize: '1rem', fontWeight: 600, borderRadius: '8px', background: '#222', color: '#fff', border: 'none', cursor: 'pointer' }}
+          style={{ marginRight: '1.5rem', marginTop: '0.5rem', padding: '0.5rem 1rem', fontSize: '1rem', fontWeight: 600, borderRadius: '8px', background: '#222', color: '#fff', border: 'none', cursor: 'pointer' }}
           onClick={() => router.push('/dashboard')}
         >
           Next
@@ -105,9 +113,12 @@ export default function BMCPage() {
             <div>{'7. ' + bmcSections[6].title}</div>
           </div>
           {bmc.key_resources && (
-            <ul style={cardContentStyle}>
+            <ul style={cardContentStyle} className="custom-scroll">
               {bmc.key_resources.map((item: string, idx: number) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <span style={{ color: '#0070f3', fontWeight: 'bold' }}>➤</span>
+                  {item}
+                </li>
               ))}
             </ul>
           )}
@@ -119,9 +130,12 @@ export default function BMCPage() {
             <div>{'6. ' + bmcSections[5].title}</div>
           </div>
           {bmc.key_activities && (
-            <ul style={cardContentStyle}>
+            <ul style={cardContentStyle1} className="custom-scroll">
               {bmc.key_activities.map((item: string, idx: number) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <span style={{ color: '#0070f3', fontWeight: 'bold' }}>➤</span>
+                  {item}
+                </li>
               ))}
             </ul>
           )}
@@ -133,7 +147,18 @@ export default function BMCPage() {
             <div>{'2. ' + bmcSections[1].title}</div>
           </div>
           {bmc.value_proposition && (
-            <div style={cardContentStyle}>{bmc.value_proposition}</div>
+            Array.isArray(bmc.value_proposition) ? (
+              <ul style={cardContentStyle1} className="custom-scroll">
+                {bmc.value_proposition.map((item: string, idx: number) => (
+                  <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                    <span style={{ color: '#0070f3', fontWeight: 'bold' }}>➤</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div style={cardContentStyle1} className="custom-scroll">{bmc.value_proposition}</div>
+            )
           )}
         </div>
         {/* CHANNELS */}
@@ -143,9 +168,12 @@ export default function BMCPage() {
             <div>{'3. ' + bmcSections[2].title}</div>
           </div>
           {bmc.channels && (
-            <ul style={cardContentStyle}>
+            <ul style={cardContentStyle} className="custom-scroll">
               {bmc.channels.map((item: string, idx: number) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <span style={{ color: '#0070f3', fontWeight: 'bold' }}>➤</span>
+                  {item}
+                </li>
               ))}
             </ul>
           )}
@@ -157,9 +185,12 @@ export default function BMCPage() {
             <div>{'1. ' + bmcSections[0].title}</div>
           </div>
           {bmc.customer_segments && (
-            <ul style={cardContentStyle}>
+            <ul style={cardContentStyle1} className="custom-scroll">
               {bmc.customer_segments.map((item: string, idx: number) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <span style={{ color: '#0070f3', fontWeight: 'bold' }}>➤</span>
+                  {item}
+                </li>
               ))}
             </ul>
           )}
@@ -171,9 +202,12 @@ export default function BMCPage() {
             <div>{'8. ' + bmcSections[7].title}</div>
           </div>
           {bmc.key_partnerships && (
-            <ul style={cardContentStyle}>
+            <ul style={cardContentStyle} className="custom-scroll">
               {bmc.key_partnerships.map((item: string, idx: number) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <span style={{ color: '#0070f3', fontWeight: 'bold' }}>➤</span>
+                  {item}
+                </li>
               ))}
             </ul>
           )}
@@ -185,9 +219,12 @@ export default function BMCPage() {
             <div>{'4. ' + bmcSections[3].title}</div>
           </div>
           {bmc.customer_relationships && (
-            <ul style={cardContentStyle}>
+            <ul style={cardContentStyle} className="custom-scroll">
               {bmc.customer_relationships.map((item: string, idx: number) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <span style={{ color: '#0070f3', fontWeight: 'bold' }}>➤</span>
+                  {item}
+                </li>
               ))}
             </ul>
           )}
@@ -199,9 +236,12 @@ export default function BMCPage() {
             <div>{'9. ' + bmcSections[8].title}</div>
           </div>
           {bmc.cost_structure && (
-            <ul style={cardContentStyle}>
+            <ul style={cardContentStyle} className="custom-scroll">
               {bmc.cost_structure.map((item: string, idx: number) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <span style={{ color: '#0070f3', fontWeight: 'bold' }}>➤</span>
+                  {item}
+                </li>
               ))}
             </ul>
           )}
@@ -213,9 +253,12 @@ export default function BMCPage() {
             <div>{'5. ' + bmcSections[4].title}</div>
           </div>
           {bmc.revenue_streams && (
-            <ul style={cardContentStyle}>
+            <ul style={cardContentStyle} className="custom-scroll">
               {bmc.revenue_streams.map((item: string, idx: number) => (
-                <li key={idx}>{item}</li>
+                <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <span style={{ color: '#0070f3', fontWeight: 'bold' }}>➤</span>
+                  {item}
+                </li>
               ))}
             </ul>
           )}

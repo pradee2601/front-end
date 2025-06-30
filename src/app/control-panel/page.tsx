@@ -49,7 +49,7 @@ export default function ControlPanelPage() {
       .then((data: any) => {
         if (data && data.bmc) {
           // Set current BMC
-          const bmcDraft = data.bmc.bmc_draft;
+          const bmcDraft = data.bmc.bmc.bmc_components;
           setBmc({
             keyPartners: (bmcDraft.key_partnerships || []).join("\n"),
             keyActivities: (bmcDraft.key_activities || []).join("\n"),
@@ -57,28 +57,44 @@ export default function ControlPanelPage() {
             customerRelationships: (bmcDraft.customer_relationships || []).join("\n"),
             channels: (bmcDraft.channels || []).join("\n"),
             customerSegments: (bmcDraft.customer_segments || []).join("\n"),
-            costStructure: (bmcDraft.cost_structures || []).join("\n"),
+            costStructure: (bmcDraft.cost_structure || []).join("\n"),
             revenueStreams: (bmcDraft.revenue_streams || []).join("\n"),
           });
 
-          // Set version history from API
-          if (Array.isArray(data.bmc.version_history)) {
+          // Set version history from API (updated for new backend structure)
+          if (data.bmc.version_history && Array.isArray(data.bmc.version_history)) {
             const apiVersions = data.bmc.version_history.map((version: any) => {
-              const v = version.bmc_data;
+              const v = version.bmc;
               return {
                 keyPartners: (v.key_partnerships || []).join("\n"),
                 keyActivities: (v.key_activities || []).join("\n"),
-                valuePropositions: v.value_proposition || "",
+                valuePropositions: Array.isArray(v.value_proposition) ? v.value_proposition.join("\n") : (v.value_proposition || ""),
                 customerRelationships: (v.customer_relationships || []).join("\n"),
                 channels: (v.channels || []).join("\n"),
                 customerSegments: (v.customer_segments || []).join("\n"),
-                costStructure: (v.cost_structures || []).join("\n"),
+                costStructure: (v.cost_structure || v.cost_structures || []).join("\n"),
                 revenueStreams: (v.revenue_streams || []).join("\n"),
                 date: version.timestamp ? new Date(version.timestamp).toLocaleString() : "",
                 version_id: version.version_id,
               };
             });
             setVersions(apiVersions);
+          } else {
+            // If no version history, just set the current version as the only version
+            setVersions([
+              {
+                keyPartners: (bmcDraft.key_partnerships || []).join("\n"),
+                keyActivities: (bmcDraft.key_activities || []).join("\n"),
+                valuePropositions: Array.isArray(bmcDraft.value_proposition) ? bmcDraft.value_proposition.join("\n") : (bmcDraft.value_proposition || ""),
+                customerRelationships: (bmcDraft.customer_relationships || []).join("\n"),
+                channels: (bmcDraft.channels || []).join("\n"),
+                customerSegments: (bmcDraft.customer_segments || []).join("\n"),
+                costStructure: (bmcDraft.cost_structure || bmcDraft.cost_structures || []).join("\n"),
+                revenueStreams: (bmcDraft.revenue_streams || []).join("\n"),
+                date: data.bmc.updatedAt ? new Date(data.bmc.updatedAt).toLocaleString() : "",
+                version_id: data.bmc.version_id,
+              },
+            ]);
           }
         }
       })
@@ -91,7 +107,7 @@ export default function ControlPanelPage() {
 
   const saveVersion = async () => {
     const userId = localStorage.getItem("userId");
-    const ideaId = "68551d72ac3a27e9943e1513";
+    const ideaId = localStorage.getItem("ideaId");
     if (!userId || !ideaId) {
       setError("User ID or Idea ID missing.");
       return;

@@ -60,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-10">
+    <div className=" mx-auto p-6 space-y-10">
       {/* 1. Business Idea Input */}
       <section className="bg-white dark:bg-gray-900 rounded shadow p-6">
         <h2 className="text-xl font-bold mb-4">Business Idea Input</h2>

@@ -47,7 +47,7 @@ export default function LoginPage() {
             <div className="w-16 h-16 rounded-full border-2 border-blue-400 flex items-center justify-center mb-4">
               <svg width="36" height="36" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="text-blue-400"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
             </div>
-            <div className="flex w-full mb-6 border-b border-gray-700">
+            <div className=" w-full mb-6 border-b border-gray-700">
               <button
                 className={`flex-1 py-2 text-lg font-semibold transition-colors ${tab === "login" ? "border-b-2 border-pink-500 text-pink-400" : "text-gray-400"}`}
                 onClick={() => { setTab("login"); setError(""); }}
@@ -99,12 +99,12 @@ export default function LoginPage() {
               >
                 LOGIN
               </button>
-              <div className="flex justify-between text-xs text-gray-400 mt-2">
+              {/* <div className="flex justify-between text-xs text-gray-400 mt-2">
                 <label className="flex items-center gap-1">
                   <input type="checkbox" className="accent-pink-500" /> Remember me
                 </label>
                 <a href="#" className="hover:underline text-pink-400">Forgot your password?</a>
-              </div>
+              </div> */}
             </form>
           ) : (
             <form onSubmit={handleSignup} className="space-y-5 w-full">
