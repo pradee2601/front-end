@@ -33,6 +33,48 @@ const HomePage = () => {
     router.push("/input");
   };
 
+  // IdeaCard component for displaying each idea as a card
+  interface IdeaCardProps {
+    label: string;
+    title: string;
+    onClick: () => void;
+    bgGradient: string;
+  }
+  const IdeaCard: React.FC<IdeaCardProps> = ({ label, title, onClick, bgGradient }) => (
+    <div
+      style={{
+        borderRadius: 20,
+        background: bgGradient,
+        padding: "1.5rem",
+        minWidth: 250,
+        minHeight: 180,
+        boxShadow: "0 4px 16px rgba(0,0,0,0.07)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        cursor: "pointer",
+        transition: "transform 0.15s",
+      }}
+      onClick={onClick}
+      onMouseOver={e => (e.currentTarget.style.transform = "scale(1.03)")}
+      onMouseOut={e => (e.currentTarget.style.transform = "scale(1)")}
+    >
+      <span style={{
+        fontSize: 12,
+        fontWeight: 600,
+        color: "#fff",
+        background: "rgba(0,0,0,0.15)",
+        borderRadius: 6,
+        padding: "2px 10px",
+        alignSelf: "flex-start",
+        marginBottom: 10
+      }}>{label}</span>
+      <div>
+        <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 8 }}>{title}</div>
+      </div>
+    </div>
+  );
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div style={{ color: "red" }}>{error}</div>;
 
@@ -85,32 +127,30 @@ const HomePage = () => {
           <p style={{ fontSize: 18 }}>No ideas found. Start by adding your first idea!</p>
         </div>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 16, width: "100%", maxWidth: 700 }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: 24,
+            width: "100%",
+            maxWidth: 900,
+          }}
+        >
           {ideas.map((idea, idx) => (
-            <div
+            <IdeaCard
               key={idx}
-              style={{
-                padding: "1rem 1.25rem",
-                borderRadius: 10,
-                background: "#f1f5fb",
-                cursor: "pointer",
-                border: "1px solid",
-                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                color: "#222",
-                fontSize: 18,
-                fontWeight: 500,
-                transition: "background 0.2s"
-              }}
+              label="IDEA"
+              title={idea.businessidea}
               onClick={() => handleIdeaClick(idea._id)}
-              onMouseOver={e => {
-                e.currentTarget.style.background = '#e0e7ef';
-              }}
-              onMouseOut={e => {
-                e.currentTarget.style.background = '#f1f5fb';
-              }}
-            >
-              {idea.idea}
-            </div>
+              bgGradient={
+                [
+                  "linear-gradient(135deg, #fbeee6 60%, #f7c8a0 100%)",
+                  "linear-gradient(135deg, #e6fbe9 60%, #b0eacb 100%)",
+                  "linear-gradient(135deg, #f3e6fb 60%, #d1b0ea 100%)",
+                  "linear-gradient(135deg, #e6eafb 60%, #b0c3ea 100%)"
+                ][idx % 4]
+              }
+            />
           ))}
         </div>
       )}

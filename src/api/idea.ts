@@ -1,6 +1,7 @@
 export type IdeaData = {
   userId: string;
   idea: string;
+  businessidea: string;
 };
 
 export const handleIdeaSubmit = async (
@@ -10,7 +11,7 @@ export const handleIdeaSubmit = async (
 ) => {
   e.preventDefault();
   setError("");
-  if (!ideaData.userId || !ideaData.idea) {
+  if (!ideaData.userId || !ideaData.idea || !ideaData.businessidea) {
     setError("Please fill in all fields.");
     return;
   }

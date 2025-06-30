@@ -79,7 +79,7 @@ export default function BMCPage() {
     }
   }, []);
 
-  const bmc = ideaData?.bmc?.bmc_draft || {};
+  const bmc = ideaData?.bmc?.bmc.bmc_components || {};
 
   return (
     <div>
@@ -198,9 +198,9 @@ export default function BMCPage() {
             <span style={{ fontSize: '2rem' }}>{bmcSections[8].icon}</span>
             <div>{'9. ' + bmcSections[8].title}</div>
           </div>
-          {bmc.cost_structures && (
+          {bmc.cost_structure && (
             <ul style={cardContentStyle}>
-              {bmc.cost_structures.map((item: string, idx: number) => (
+              {bmc.cost_structure.map((item: string, idx: number) => (
                 <li key={idx}>{item}</li>
               ))}
             </ul>
