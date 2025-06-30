@@ -93,8 +93,10 @@ const HomePage = () => {
         <div className="absolute bottom-10 left-10 w-28 h-28 bg-pink-200 opacity-20 rounded-full blur-2xl animate-float-medium" />
       </div>
       <div style={{ width: '100%', margin: '0 auto', padding: '2rem 2rem' }} className="w-full">
-        <h1 className="text-4xl font-bold text-blue-700 drop-shadow mb-1">Welcome</h1>
-        <p style={{ fontSize: 18, color: '#555', marginTop: 8, marginBottom: 24 }}>Ignite your creativity. Build your future.</p>
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h1 className="text-4xl font-bold text-blue-700 drop-shadow mb-1">Welcome</h1>
+          <p style={{ fontSize: 18, color: '#555', marginTop: 8, marginBottom: 0 }}>Ignite your creativity. Build your future.</p>
+        </div>
         <div
           style={{
             width: "100%",

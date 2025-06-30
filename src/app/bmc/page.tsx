@@ -26,8 +26,8 @@ const gridStyle: React.CSSProperties = {
   gridTemplateRows: '1fr 1fr 1fr',
   gap: '10px',
   height: '100vh',
-  padding: '20px',
-  background: '#ffffff',
+  padding: '10px',
+
 };
 
 const cardStyle: React.CSSProperties = {
@@ -90,13 +90,19 @@ export default function BMCPage() {
   const bmc = ideaData?.bmc?.bmc.bmc_components || {};
 
   return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.5rem', marginBottom: '1rem' }}>
-        <h1 className='text-2xl font-bold mt-2 ml-2'>
+    <div className='animate-bg-gradient bg-gradient-to-br from-blue-100 via-green-100 to-blue-200'>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.5rem', }}>
+      <button
+          className='bg-gradient-to-r from-blue-500 to-green-400 text-white px-5 py-2 rounded-lg font-semibold shadow hover:scale-105 active:scale-95 focus:ring-2 focus:ring-green-300 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed mt-4 ml-4'
+          onClick={() => router.push('/home')}
+        >
+          Back
+        </button>
+        <h1 className='text-2xl font-bold mt-2 ml-6'>
           Business Model Canvas
         </h1>
         <button
-          style={{ marginRight: '1.5rem', marginTop: '0.5rem', padding: '0.5rem 1rem', fontSize: '1rem', fontWeight: 600, borderRadius: '8px', background: '#222', color: '#fff', border: 'none', cursor: 'pointer' }}
+          className='bg-gradient-to-r from-blue-500 to-green-400 text-white px-5 py-2 rounded-lg font-semibold shadow hover:scale-105 active:scale-95 focus:ring-2 focus:ring-green-300 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed mt-4 mr-4'
           onClick={() => router.push('/dashboard')}
         >
           Next

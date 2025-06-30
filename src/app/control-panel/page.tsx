@@ -191,72 +191,97 @@ export default function ControlPanelPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-800 via-purple-800 to-blue-600">
-      <div className="w-full  bg-[#181c2f] rounded-3xl shadow-2xl p-6 md:p-12 flex flex-col gap-8 ">
-        <h1 className="text-3xl font-extrabold text-center text-white mb-8 drop-shadow-lg tracking-tight">User Control Panel</h1>
-        {loading && <div className="text-white text-center">Loading...</div>}
-        {error && <div className="text-red-400 text-center mb-4">{error}</div>}
-        <div className="mb-8">
-          <h2 className="font-semibold text-blue-200 mb-4 text-lg">Edit BMC</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {Object.entries(bmc).filter(([key]) => key !== "date").map(([key, value]) => (
-              <div key={key}>
-                <label className="block font-medium mb-2 capitalize text-blue-100 tracking-wide">{key.replace(/([A-Z])/g, " $1").trim()}</label>
-                <textarea
-                  className="bg-[#23284a] border-none rounded-lg p-3 w-full min-h-[150px] text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400 shadow"
-                  name={key}
-                  value={value}
-                  onChange={handleBmcChange}
-                  placeholder={`Enter ${key.replace(/([A-Z])/g, ' $1').trim()}`}
-                />
-              </div>
-            ))}
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 mt-6">
-            <button
-              className="w-full sm:w-auto bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-colors"
-              onClick={saveVersion}
-              type="button"
-            >
-              Save as New Version
-            </button>
-            <button
-              className="w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-colors"
-              onClick={resetBmc}
-              type="button"
-            >
-              Reset BMC
-            </button>
-          </div>
+    <div className="min-h-screen flex flex-col items-start relative overflow-x-hidden">
+      {/* Animated, interactive background */}
+      <div className="fixed inset-0 -z-10 animate-bg-gradient bg-gradient-to-br from-blue-100 via-green-100 to-blue-200" />
+      {/* Floating shapes */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="absolute top-10 left-1/4 w-40 h-40 bg-blue-300 opacity-30 rounded-full blur-2xl animate-float-slow" />
+        <div className="absolute bottom-20 right-1/5 w-32 h-32 bg-green-300 opacity-30 rounded-full blur-2xl animate-float-medium" />
+        <div className="absolute top-1/2 left-3/4 w-24 h-24 bg-yellow-200 opacity-20 rounded-full blur-2xl animate-float-fast" />
+        <div className="absolute bottom-10 left-10 w-28 h-28 bg-pink-200 opacity-20 rounded-full blur-2xl animate-float-medium" />
+      </div>
+      <div className="w-full p-6 md:p-12">
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h1 className="text-4xl font-bold text-blue-700 drop-shadow mb-1">Control Panel</h1>
+          <p className="text-lg text-gray-600">Manage your business model canvas versions</p>
         </div>
-        <div className="mb-8">
-          <h2 className="font-semibold text-purple-200 mb-4 text-lg">Manage Versions</h2>
-          {versions.length === 0 ? (
-            <div className="text-blue-100">No versions saved yet.</div>
-          ) : (
-            <ul className="space-y-3">
-              {versions.map((version, idx) => (
-                <li key={idx} className="flex flex-col sm:flex-row items-start sm:items-center gap-2 bg-[#23284a] rounded-lg p-3 shadow">
-                  <button
-                    className="underline text-blue-300 hover:text-pink-400 font-semibold text-left"
-                    onClick={() => loadVersion(version)}
-                    type="button"
-                  >
-                    Load version from {version.date}
-                  </button>
-                  <button
-                    className="text-xs text-red-400 hover:underline ml-0 sm:ml-4"
-                    onClick={() => deleteVersion(idx)}
-                    type="button"
-                  >
-                    Delete
-                  </button>
-                </li>
+        
+        <div className="w-full bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8">
+          {loading && <div className="text-gray-600 text-center">Loading...</div>}
+          {error && <div className="text-red-500 text-center mb-4 p-3 bg-red-50 rounded-lg">{error}</div>}
+          
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Edit BMC</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {Object.entries(bmc).filter(([key]) => key !== "date").map(([key, value]) => (
+                <div key={key} className="bg-white/80 rounded-xl shadow-md p-4">
+                  <label className="block font-medium mb-2 capitalize text-gray-700 tracking-wide">
+                    {key.replace(/([A-Z])/g, " $1").trim()}
+                  </label>
+                  <textarea
+                    className="w-full min-h-[150px] bg-white border border-gray-200 rounded-lg p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-shadow"
+                    name={key}
+                    value={value}
+                    onChange={handleBmcChange}
+                    placeholder={`Enter ${key.replace(/([A-Z])/g, ' $1').trim()}`}
+                  />
+                </div>
               ))}
-            </ul>
-          )}
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 mt-6">
+              <button
+                className="bg-gradient-to-r from-blue-500 to-green-400 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 active:scale-95 transition-all duration-200"
+                onClick={saveVersion}
+                type="button"
+              >
+                Save as New Version
+              </button>
+              <button
+                className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 active:scale-95 transition-all duration-200"
+                onClick={resetBmc}
+                type="button"
+              >
+                Reset BMC
+              </button>
+            </div>
+          </div>
+
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Manage Versions</h2>
+            {versions.length === 0 ? (
+              <div className="text-gray-600 bg-gray-50 rounded-lg p-4">No versions saved yet.</div>
+            ) : (
+              <div className="space-y-3">
+                {versions.map((version, idx) => (
+                  <div key={idx} className="bg-white rounded-lg shadow-md p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 hover:shadow-lg transition-shadow">
+                    <button
+                      className="text-blue-600 hover:text-green-500 font-medium transition-colors"
+                      onClick={() => loadVersion(version)}
+                      type="button"
+                    >
+                      Load version from {version.date}
+                    </button>
+                    <button
+                      className="text-sm text-red-500 hover:text-red-600 hover:underline transition-colors"
+                      onClick={() => deleteVersion(idx)}
+                      type="button"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <Link 
+            href="/dashboard" 
+            className="inline-block bg-gradient-to-r from-blue-500 to-green-400 text-white px-5 py-2 rounded-lg font-semibold shadow hover:scale-105 active:scale-95 transition-all duration-200"
+          >
+            Back to Dashboard
+          </Link>
         </div>
-        <Link href="/dashboard" className="w-full md:w-auto underline text-blue-300 hover:text-pink-400 font-semibold text-center">Back to Dashboard</Link>
       </div>
     </div>
   );

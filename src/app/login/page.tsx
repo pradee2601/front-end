@@ -39,30 +39,48 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-800 via-purple-800 to-blue-600">
-      <div className="w-full max-w-6xl h-[600px] bg-[#181c2f] rounded-3xl shadow-2xl flex overflow-hidden">
-        {/* Left: Login/Signup Form */}
+    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-x-hidden">
+      {/* Animated, interactive background */}
+      <div className="fixed inset-0 -z-10 animate-bg-gradient bg-gradient-to-br from-blue-100 via-green-100 to-blue-200" />
+      {/* Floating shapes */}
+      <div className="pointer-events-none fixed inset-0 -z-10">
+        <div className="absolute top-10 left-1/4 w-40 h-40 bg-blue-300 opacity-30 rounded-full blur-2xl animate-float-slow" />
+        <div className="absolute bottom-20 right-1/5 w-32 h-32 bg-green-300 opacity-30 rounded-full blur-2xl animate-float-medium" />
+        <div className="absolute top-1/2 left-3/4 w-24 h-24 bg-yellow-200 opacity-20 rounded-full blur-2xl animate-float-fast" />
+        <div className="absolute bottom-10 left-10 w-28 h-28 bg-pink-200 opacity-20 rounded-full blur-2xl animate-float-medium" />
+      </div>
+      <div className="w-full max-w-6xl h-[600px] bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl flex overflow-hidden">
+        {/* Left: Welcome Section */}
+        <div className="hidden md:flex flex-1 flex-col justify-center items-center relative">
+          <div className="relative z-10 flex flex-col items-center text-center px-10">
+            <h1 className="text-4xl font-extrabold text-gray-800 mb-4 drop-shadow-lg">Welcome.</h1>
+            <p className="text-lg text-gray-600 mb-8 max-w-xs">Welcome to Agentic AI Generator for Founder-Centric Business Model Canvas (BMC). Enter your credentials to access your account or sign up to get started!</p>
+          </div>
+        </div>
+        {/* Vertical Divider */}
+        <div className="hidden md:block w-0.5 bg-gray-400 h-4/5 self-center" />
+        {/* Right: Login/Signup Form */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center px-10 py-12 relative z-10">
           <div className="flex flex-col items-center mb-8">
             <div className="w-16 h-16 rounded-full border-2 border-blue-400 flex items-center justify-center mb-4">
               <svg width="36" height="36" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="text-blue-400"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
             </div>
-            <div className=" w-full mb-6 border-b border-gray-700">
+            <div className="w-full mb-6 border-b border-gray-200">
               <button
-                className={`flex-1 py-2 text-lg font-semibold transition-colors ${tab === "login" ? "border-b-2 border-pink-500 text-pink-400" : "text-gray-400"}`}
+                className={`flex-1 py-2 text-lg font-semibold transition-colors ${tab === "login" ? "border-b-2 border-blue-500 text-blue-500" : "text-gray-400"}`}
                 onClick={() => { setTab("login"); setError(""); }}
               >
                 Login
               </button>
               <button
-                className={`flex-1 py-2 px-4 text-lg font-semibold transition-colors ${tab === "signup" ? "border-b-2 border-pink-500 text-pink-400" : "text-gray-400"}`}
+                className={`flex-1 py-2 px-4 text-lg font-semibold transition-colors ${tab === "signup" ? "border-b-2 border-blue-500 text-blue-500" : "text-gray-400"}`}
                 onClick={() => { setTab("signup"); setError(""); }}
               >
                 Sign Up
               </button>
             </div>
           </div>
-          {error && <div className="mb-4 text-pink-400 text-sm text-center w-full">{error}</div>}
+          {error && <div className="mb-4 text-red-500 text-sm text-center w-full">{error}</div>}
           {tab === "login" ? (
             <form onSubmit={handleLogin} className="space-y-5 w-full">
               <div className="relative">
@@ -71,7 +89,7 @@ export default function LoginPage() {
                   name="email"
                   value={loginData.email}
                   onChange={handleLoginChange}
-                  className="w-full bg-[#23284a] border-none rounded-lg px-4 py-3 pl-12 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                  className="w-full bg-white/50 border border-gray-200 rounded-lg px-4 py-3 pl-12 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                   placeholder="Username"
                   required
                 />
@@ -85,7 +103,7 @@ export default function LoginPage() {
                   name="password"
                   value={loginData.password}
                   onChange={handleLoginChange}
-                  className="w-full bg-[#23284a] border-none rounded-lg px-4 py-3 pl-12 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                  className="w-full bg-white/50 border border-gray-200 rounded-lg px-4 py-3 pl-12 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                   placeholder="Password"
                   required
                 />
@@ -95,16 +113,10 @@ export default function LoginPage() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg font-semibold shadow-lg transition-colors"
+                className="w-full bg-gradient-to-r from-blue-500 to-green-400 text-white py-3 rounded-lg font-semibold shadow-lg hover:scale-105 active:scale-95 transition-all duration-200"
               >
                 LOGIN
               </button>
-              {/* <div className="flex justify-between text-xs text-gray-400 mt-2">
-                <label className="flex items-center gap-1">
-                  <input type="checkbox" className="accent-pink-500" /> Remember me
-                </label>
-                <a href="#" className="hover:underline text-pink-400">Forgot your password?</a>
-              </div> */}
             </form>
           ) : (
             <form onSubmit={handleSignup} className="space-y-5 w-full">
@@ -114,7 +126,7 @@ export default function LoginPage() {
                   name="name"
                   value={signupData.name}
                   onChange={handleSignupChange}
-                  className="w-full bg-[#23284a] border-none rounded-lg px-4 py-3 pl-12 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                  className="w-full bg-white/50 border border-gray-200 rounded-lg px-4 py-3 pl-12 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                   placeholder="Name"
                   required
                 />
@@ -128,7 +140,7 @@ export default function LoginPage() {
                   name="email"
                   value={signupData.email}
                   onChange={handleSignupChange}
-                  className="w-full bg-[#23284a] border-none rounded-lg px-4 py-3 pl-12 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                  className="w-full bg-white/50 border border-gray-200 rounded-lg px-4 py-3 pl-12 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                   placeholder="Email"
                   required
                 />
@@ -142,7 +154,7 @@ export default function LoginPage() {
                   name="password"
                   value={signupData.password}
                   onChange={handleSignupChange}
-                  className="w-full bg-[#23284a] border-none rounded-lg px-4 py-3 pl-12 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                  className="w-full bg-white/50 border border-gray-200 rounded-lg px-4 py-3 pl-12 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                   placeholder="Password"
                   required
                 />
@@ -156,7 +168,7 @@ export default function LoginPage() {
                   name="confirmPassword"
                   value={signupData.confirmPassword}
                   onChange={handleSignupChange}
-                  className="w-full bg-[#23284a] border-none rounded-lg px-4 py-3 pl-12 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                  className="w-full bg-white/50 border border-gray-200 rounded-lg px-4 py-3 pl-12 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
                   placeholder="Confirm Password"
                   required
                 />
@@ -166,33 +178,12 @@ export default function LoginPage() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-lg font-semibold shadow-lg transition-colors"
+                className="w-full bg-gradient-to-r from-blue-500 to-green-400 text-white py-3 rounded-lg font-semibold shadow-lg hover:scale-105 active:scale-95 transition-all duration-200"
               >
                 SIGN UP
               </button>
             </form>
           )}
-        </div>
-        {/* Right: Welcome Section */}
-        <div className="hidden md:flex flex-1 flex-col justify-center items-center bg-gradient-to-br from-blue-900 via-purple-900 to-blue-700 relative">
-          {/* Abstract swirl background effect */}
-          <div className="absolute inset-0 z-0 flex items-center justify-center">
-            <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60">
-              <defs>
-                <radialGradient id="swirl" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                  <stop offset="0%" stopColor="#7f5af0" />
-                  <stop offset="100%" stopColor="#23284a" />
-                </radialGradient>
-              </defs>
-              <ellipse cx="200" cy="200" rx="160" ry="80" fill="url(#swirl)"/>
-              <ellipse cx="200" cy="220" rx="120" ry="60" fill="#5f4bb6" fillOpacity="0.3"/>
-              <ellipse cx="200" cy="180" rx="100" ry="40" fill="#7f5af0" fillOpacity="0.2"/>
-            </svg>
-          </div>
-          <div className="relative z-10 flex flex-col items-center text-center px-10">
-            <h1 className="text-4xl font-extrabold text-white mb-4 drop-shadow-lg">Welcome.</h1>
-            <p className="text-lg text-blue-100 mb-8 max-w-xs">Welcome to Agentic AI Generator for Founder-Centric Business Model Canvas (BMC). Enter your credentials to access your account or sign up to get started!</p>
-          </div>
         </div>
       </div>
     </div>
