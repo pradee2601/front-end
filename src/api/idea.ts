@@ -27,7 +27,7 @@ export const handleIdeaSubmit = async (
     } else {
       // Store the returned id in localStorage
       if (data.id) {
-        localStorage.setItem("ideaId", data.id);
+        localStorage.setItem("IdeaId", data.id);
       }
       return data.id; // Optionally return the id
     }

@@ -192,14 +192,14 @@ export default function InputPage() {
             </div>
           </form>
           {submitted && (
-            <div className="mt-6 text-center animate-fade-in">
+            <div className="mt-6 text-center">
               <span className="text-green-600 font-semibold text-lg flex items-center justify-center gap-2"><svg className="h-6 w-6 text-green-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>All answers submitted!</span>
               <br />
               <Link href="/dashboard" className="underline text-blue-600 hover:text-blue-800">Go to Dashboard</Link>
             </div>
           )}
           {showToast && (
-            <div className="fixed left-1/2 top-8 transform -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded shadow-lg animate-fade-in">
+            <div className="fixed left-1/2 top-8 transform -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded shadow-lg">
               All answers submitted!
             </div>
           )}
