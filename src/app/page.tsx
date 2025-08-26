@@ -15,7 +15,7 @@ interface BmcType {
   revenueStreams: string;
   date?: string;
 }
-
+   
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
