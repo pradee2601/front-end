@@ -17,6 +17,8 @@ interface BmcType {
 }
    
 
+
+
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
