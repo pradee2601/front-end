@@ -203,7 +203,7 @@ export default function InputPage() {
           )}
           {showToast && (
             <div className="fixed left-1/2 top-8 transform -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded shadow-lg">
-              All answers submitted!
+              All answers  submitted!
             </div>
           )}
         </div>
