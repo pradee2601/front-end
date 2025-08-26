@@ -59,9 +59,6 @@ export default function InputPage() {
   };
 
 
-
-
-  
   const handleNext = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
