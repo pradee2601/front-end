@@ -35,7 +35,6 @@ export default function Home() {
   });
   const [versions, setVersions] = useState<BmcType[]>([]);
   const [editing, setEditing] = useState(false);
-
   const handleIdeaSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEditing(true);
