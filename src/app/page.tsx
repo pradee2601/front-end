@@ -16,8 +16,6 @@ interface BmcType {
   date?: string;
 }
 
-
-
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
