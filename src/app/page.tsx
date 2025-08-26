@@ -13,7 +13,6 @@ interface BmcType {
   customerSegments: string;
   costStructure: string;
   revenueStreams: string;
-  
   date?: string;
   
 }
