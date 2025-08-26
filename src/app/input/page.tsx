@@ -166,7 +166,8 @@ export default function InputPage() {
               >
                 ← Previous
 
-                
+
+
               </button>
               {currentQuestion < questions.length - 1 ? (
                 <button
