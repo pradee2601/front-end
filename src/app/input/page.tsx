@@ -165,6 +165,7 @@ export default function InputPage() {
                 disabled={currentQuestion === 0}
               >
                 ← Previous
+
                 
               </button>
               {currentQuestion < questions.length - 1 ? (
