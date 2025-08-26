@@ -15,7 +15,6 @@ interface BmcType {
   revenueStreams: string;
   date?: string;
   
-
 }
 
    
