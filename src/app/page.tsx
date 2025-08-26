@@ -14,7 +14,6 @@ interface BmcType {
   costStructure: string;
   revenueStreams: string;
   date?: string;
-  
 }
 
    
