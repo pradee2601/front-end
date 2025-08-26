@@ -164,7 +164,7 @@ export default function InputPage() {
                 }`}
                 disabled={currentQuestion === 0}
               >
-                ← Previous
+                ← Previou s
 
 
 
