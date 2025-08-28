@@ -57,8 +57,6 @@ export default function InputPage() {
       [questionId]: value
     }));
   };
-
-
   const handleNext = () => {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
