@@ -11,8 +11,6 @@ const questionIcons = [
   "🌟"  // Unique
 ];
    
-
-
 export default function InputPage() {
   const [formData, setFormData] = useState({
     question1: "",
