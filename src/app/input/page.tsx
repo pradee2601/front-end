@@ -10,8 +10,6 @@ const questionIcons = [
   "🧩", // Problem/Solution
   "🌟"  // Unique
 ];
-   
-
 
 export default function InputPage() {
   const [formData, setFormData] = useState({
